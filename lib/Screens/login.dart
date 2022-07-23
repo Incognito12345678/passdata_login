@@ -6,7 +6,6 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController controller1 = TextEditingController();
     TextEditingController controller2 = TextEditingController();
 
@@ -17,19 +16,19 @@ class Login extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-             TextField(
+            TextField(
                 controller: controller1,
                 decoration: const InputDecoration(
                   hintText: "Enter your Name",
                   labelText: "Name",
                   border: OutlineInputBorder(),
                 )),
-             TextField(
-             controller: controller2,
-                decoration: const InputDecoration(
-                  hintText: "Enter your password",
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
+            TextField(
+              controller: controller2,
+              decoration: const InputDecoration(
+                hintText: "Enter your password",
+                labelText: "Password",
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(
@@ -38,7 +37,17 @@ class Login extends StatelessWidget {
             ElevatedButton(
               child: const Text('Login'),
               onPressed: () {
-                Navigator.push(
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Warning'),
+                      content: const Text('La informacion es correcta?.'),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          child: const Text('Si'),
+                          onPressed: () {
+                            Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ReceiveData(
@@ -47,6 +56,19 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 );
+                          },
+                        ),
+                        ElevatedButton(
+                          child: const Text('No'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+
                 
               },
             ),

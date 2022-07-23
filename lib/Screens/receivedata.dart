@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class ReceiveData extends StatelessWidget {
-   final String email;
+  final String email;
   final String password;
   
 
